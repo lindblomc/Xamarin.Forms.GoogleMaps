@@ -39,6 +39,7 @@ namespace Xamarin.Forms.GoogleMaps
 
         public event EventHandler<MapClickedEventArgs> MapClicked;
         public event EventHandler<MapLongClickedEventArgs> MapLongClicked;
+        public event EventHandler<CameraChangedEventArgs> CameraChanged;
 
         MapSpan _visibleRegion;
 
@@ -239,6 +240,11 @@ namespace Xamarin.Forms.GoogleMaps
         internal void SendMapLongClicked(Position point)
         {
             MapLongClicked?.Invoke(this, new MapLongClickedEventArgs(point));
+        }
+
+        internal void SendOnCameraChange(Position point, double zoom)
+        {
+            CameraChanged?.Invoke(this, new CameraChangedEventArgs(point, zoom));
         }
     }
 }
