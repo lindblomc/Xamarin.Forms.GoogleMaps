@@ -115,7 +115,7 @@ namespace Xamarin.Forms.GoogleMaps.Android
                 map.SetOnMapClickListener(this);
                 map.SetOnMapLongClickListener(this);
                 map.UiSettings.MapToolbarEnabled = false;
-                map.UiSettings.ZoomControlsEnabled = Map.HasZoomEnabled;
+                map.UiSettings.ZoomControlsEnabled = false; // Always false on modern Android devices
                 map.UiSettings.ZoomGesturesEnabled = Map.HasZoomEnabled;
                 map.UiSettings.ScrollGesturesEnabled = Map.HasScrollEnabled;
                 map.MyLocationEnabled = map.UiSettings.MyLocationButtonEnabled = Map.IsShowingUser;
@@ -216,7 +216,7 @@ namespace Xamarin.Forms.GoogleMaps.Android
                 NativeMap.UiSettings.ScrollGesturesEnabled = Map.HasScrollEnabled;
             else if (e.PropertyName == Map.HasZoomEnabledProperty.PropertyName)
             {
-                NativeMap.UiSettings.ZoomControlsEnabled = Map.HasZoomEnabled;
+                NativeMap.UiSettings.ZoomControlsEnabled = false;
                 NativeMap.UiSettings.ZoomGesturesEnabled = Map.HasZoomEnabled;
             }
             else if (e.PropertyName == Map.IsTrafficEnabledProperty.PropertyName)
@@ -256,6 +256,7 @@ namespace Xamarin.Forms.GoogleMaps.Android
         public void OnCameraChange(CameraPosition pos)
         {
             UpdateVisibleRegion(pos.Target);
+            Map.SendOnCameraChange(pos.Target.ToPosition(), pos.Zoom);
         }
 
         public void OnMapClick(LatLng point)

@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-[assembly: AssemblyCompany("amay077")]
+[assembly: AssemblyCompany("MSB")]
 [assembly: AssemblyProduct("Xamarin.Forms.GoogleMaps")]
 [assembly: AssemblyCopyright("Copyright © amay077. 2016")]
 [assembly: AssemblyTrademark("")]
